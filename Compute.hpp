@@ -13,7 +13,6 @@ public:
 
     State getState();
 
-    void setSign(int sign);
     void addDigit(int digit);
     bool lhsEmpty() const;
     bool rhsEmpty() const;
@@ -22,9 +21,12 @@ public:
     void setState(State state);
     float getResult() const;
     void reset();
+    bool isCommaSet() const;
+    void setComma();
 private:
     std::string mLHS;
     std::string mRHS;
+    bool mComma;
     State mState;
     Type mOperator;
     float mResult;

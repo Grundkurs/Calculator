@@ -12,7 +12,7 @@
 #include <SFML/Graphics/Font.hpp>
 #include <string>
 
-enum class Type{Number, Plus, Minus, Multiply, Divide, Equal, AC};
+enum class Type{Number, Plus, Minus, Multiply, Divide, Equal, AC, Comma};
 class Button : public sf::Drawable, public sf::Transformable{
 public:
     Button(Type type, std::string character);

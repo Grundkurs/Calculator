@@ -9,16 +9,17 @@
 
 Display::Display() {
 
-    mShape.setSize(sf::Vector2f{170.f, 30});
+    mShape.setSize(sf::Vector2f{260.f, 30});
     mShape.setFillColor(sf::Color{50, 200, 100, 255});
 
     mFont.loadFromFile("Dong.ttf");
     mText.setFont(mFont);
-    mText.setString(std::string{"0"});
+    //mText.setString(std::string{"0"});
     mText.setFillColor(sf::Color::White);
     mText.setCharacterSize(30);
-    mText.setPosition(sf::Vector2f{130.f, 0.f});
+    mText.setPosition(sf::Vector2f{130.f, -5.f});
 }
+
 void Display::addValue(std::string value, Type type) {
     int decimalLength{};
     if(type == Type::Number){
@@ -40,10 +41,9 @@ void Display::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(mText, states);
 }
 
-
 void Display::reset() {
     mStrText = "";
     mText.setString(mStrText);
-    mText.setPosition(sf::Vector2f{100.f, 0.f});
+    mText.setPosition(sf::Vector2f{130.f, -5.f});
 }
 

@@ -6,7 +6,7 @@
 #include "Compute.hpp"
 
 Compute::Compute()
-: mLHS(), mRHS(), mState(State::LHS), mOperator(Type::Plus), mResult(0.f){
+: mLHS(), mRHS(), mComma(false), mState(State::LHS), mOperator(Type::Plus), mResult(0.f){
 
 }
 
@@ -15,9 +15,7 @@ State Compute::getState() {
     return mState;
 }
 
-void Compute::setSign(int sign) {
 
-}
 
 bool Compute::lhsEmpty() const {
     return mLHS.empty();
@@ -80,7 +78,6 @@ void Compute::compute() {
     mResult = result;
     mLHS = std::to_string(mResult);
     mRHS.clear();
-
 }
 
 
@@ -104,13 +101,30 @@ void Compute::reset() {
 
 void Compute::addDigit(int digit) {
     std::string temp = std::to_string(digit);
+
     if(mState == State::LHS){
+        if(mComma){
+            mLHS.append(".");
+            mComma = false;
+        }
         mLHS.append(temp);
     }
-    else {
-        mRHS.append(temp);
 
+    else {
+        if(mComma){
+            mRHS.append(".");
+            mComma = false;
+        }
+        mRHS.append(temp);
     }
 }
 
 
+bool Compute::isCommaSet() const {
+    return mComma;
+}
+
+
+void Compute::setComma() {
+    mComma = true;
+}
